@@ -1,0 +1,118 @@
+Feuille de la prof :
+
+    idée : G planaire, simple => il existe v appartenant à V(G), deg(v) <= 5.
+    Soit v appartenant à G, deg(v) <= 5. 
+    On colorie G - v avec 5 couleurs différentes.
+    Puis il faut colorier v.
+
+    Cas 1 : |Gl(N(v))| <= 4 -> take one of other colors for v
+    Cas 2 : all 5 used ariund v
+
+Pour mieux visualiser voici la définition de ce qu'est un graphique en Java :
+    
+    Une structure de données graphique stocke principalement des données connectées, par exemple, un réseau de personnes ou un réseau de villes. Une structure de données de graphe se compose généralement de noeuds ou de points appelés sommets. Chaque sommet est connecté à un autre sommet à l'aide de liens appelés arêtes.
+
+Différentes variantes de graphiques en java :
+
+    graphique non dirigé : comme les arêtes ne montrent aucune direction.
+
+    graphique dirigé ou digraphe : les arêtes ont une direction spécifique. Ils proviennent d'un sommet et aboutissent à un autre sommet.
+
+    graphique pondéré : un poids est associé à chaque arête du graphe. Le poids indique normalement la distance entre les deux sommets. Peut être orienté ou non.
+
+Comment créer un graphe :
+
+    - Grâce à des collections en Java (HashMap)
+        Les éléments HashMap se présentent sous la forme de paires clé-valeur.
+    - Des tableaux dynamiques comme des vecteurs
+        Matrice de contiguité ou la liste de contiguité.
+        Puis les implémenter en graphe en JAva en utilisant la liste de contiguité en utilisant ArrayList.
+
+Représentation graphique en Java (l'approche ou la technique selon laquelle les données graphiques sont stockées dans la mémoire de l'ordi):
+
+    2 représentations principales des graphiques :
+
+    Matrice d'adjacence et Liste de proximité/contiguité.
+
+implémentation de graph en Java :
+    Utilisation de la liste de contiguité pour représenter le graphique.
+
+    import java.util.*; //class to store edges of the weighted graph class Edge { int src, dest, weight; Edge(int src, int dest, int weight) { this.src = src; this.dest = dest; this.weight = weight; } } // Graph class class Graph { // node of adjacency list static class Node { int value, weight; Node(int value, int weight) { this.value = value; this.weight = weight; } }; // define adjacency list List adj_list = new ArrayList(); //Graph Constructor public Graph(List edges) { // adjacency list memory allocation for (int i = 0; i
+
+
+    2 manières de traverser un graphique en Java :
+
+    a - En profondeur d'abord (DFS)
+    b - En largeur d'abord (BFS)
+
+    a - Voici comment procéder :
+    
+    Étape 1: Commencez par le nœud racine et insérez-le dans la pile
+
+    Étape 2: Pop l'élément de la pile et l'insérer dans la liste 'visité'
+
+    Étape 3: pour le nœud marqué comme «visité» (ou dans la liste visitée), ajoutez à la pile les nœuds adjacents de ce nœud qui ne sont pas encore marqués comme visité.
+
+    Étape 4: Répétez les étapes 2 et 3 jusqu'à ce que la pile soit vide.
+
+    implémentation DFS :
+
+    import java.io.*; import java.util.*; //DFS Technique for undirected graph class Graph { private int Vertices; // No. of vertices // adjacency list declaration private LinkedList adj_list[]; // graph Constructor: to initialize adjacency lists as per no of vertices Graph(int v) { Vertices = v; adj_list = new LinkedList[v]; for (int i=0; i
+
+    Applications de DFS
+
+    # 1) Détecter un cycle dans un graphique: DFS facilite la détection d'un cycle dans un graphique lorsque nous pouvons revenir en arrière vers une arête.
+
+    # 2) Recherche de chemin: Comme nous l'avons déjà vu dans l'illustration DFS, étant donné deux sommets quelconques, nous pouvons trouver le chemin entre ces deux sommets.
+
+    # 3) Minimum arbre couvrant et chemin le plus court: Si nous exécutons la technique DFS sur le graphe non pondéré, cela nous donne le spanning tree minimum et le chemin raccourci.
+
+    # 4) Tri topologique: Le tri topologique est utilisé lorsque nous devons planifier les travaux. Nous avons des dépendances entre divers emplois. Nous pouvons également utiliser le tri topologique pour résoudre les dépendances entre les éditeurs de liens, les ordonnanceurs d'instructions, la sérialisation des données, etc.
+
+    b - Voici comment procéder :
+
+    Étape 1: Commencez par le nœud racine et insérez-le dans la file d'attente.
+
+    Étape 2: Répétez les étapes 3 et 4 pour tous les nœuds du graphique.
+    
+    Étape 3: Supprimez le nœud racine de la file d'attente et ajoutez-le à la liste Visité.
+    
+    Étape 4: Ajoutez maintenant tous les nœuds adjacents du nœud racine à la file d'attente et répétez les étapes 2 à 4 pour chaque nœud. [END OF LOOP]
+    
+    Étape 5: SORTIR
+
+    implémentation BFS :
+
+    import java.io.*; import java.util.*; //undirected graph represented using adjacency list. class Graph { private int Vertices; // No. of vertices private LinkedList adj_list[]; //Adjacency Lists // graph Constructor:number of vertices in graph are passed Graph(int v) { Vertices = v; adj_list = new LinkedList[v]; for (int i=0; i
+
+    Applications de BFS Traversal
+
+    # 1) Collecte des ordures: L’un des algorithmes utilisés par la technique du garbage collection pour copier le garbage collection est «l’algorithme de Cheney». Cet algorithme utilise une technique de traversée en largeur d'abord.
+
+    # 2) Diffusion dans les réseaux: La diffusion de paquets d'un point à un autre dans un réseau se fait selon la technique BFS.
+
+    # 3) Navigation GPS: Nous pouvons utiliser la technique BFS pour trouver des nœuds adjacents lors de la navigation à l'aide du GPS.
+
+    # 4) Sites Web de réseautage social: La technique BFS est également utilisée dans les sites Web de réseautage social pour trouver le réseau de personnes entourant une personne en particulier.
+
+    # 5) Chemin le plus court et arbre couvrant minimum dans un graphique non pondéré: Dans le graphe non pondéré, la technique BFS peut être utilisée pour trouver un arbre couvrant minimum et le chemin le plus court entre les nœuds.
+
+Bibliothèque de graphe Java :
+
+    Vous trouverez ci-dessous une brève introduction à certaines des bibliothèques de graphes en Java.
+
+    # 1) Google Guava: Google Guava fournit une bibliothèque riche qui prend en charge les graphiques et les algorithmes, y compris les graphiques simples, les réseaux, les graphiques de valeur, etc.
+
+    # 2) Apache Commons: Apache Commons est un projet Apache qui fournit des composants de structure de données Graph et des API qui ont des algorithmes qui fonctionnent sur cette structure de données graphiques. Ces composants sont réutilisables.
+
+    # 3) JGraphT: JGraphT est l'une des bibliothèques de graphes Java largement utilisées. Il fournit des fonctionnalités de structure de données graphiques contenant un graphique simple, un graphique dirigé, un graphique pondéré, etc. ainsi que des algorithmes et des API qui fonctionnent sur la structure de données graphiques.
+
+    # 4) SourceForge JUNG: JUNG signifie «Java Universal Network / Graph» et est un framework Java. JUNG fournit un langage extensible pour l'analyse, la visualisation et la modélisation des données que nous voulons représenter sous forme de graphique.
+
+    JUNG fournit également divers algorithmes et routines pour la décomposition, le clustering, l'optimisation, etc.
+
+
+
+Voici le lien du site où j'ai trouvé ces infos :
+
+https://fr.myservername.com/top-12-mockito-interview-questions
